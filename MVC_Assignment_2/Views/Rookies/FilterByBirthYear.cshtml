@@ -1,0 +1,44 @@
+@model IEnumerable<Person>
+@{
+    ViewData["Title"] = "Filter By Birth Year";
+    string selectedCondition = ViewData["SelectedCondition"]?.ToString() ?? "equal";
+}
+
+<h2>Filter By Birth Year (2000)</h2>
+
+<div>
+    <a href="@Url.Action("FilterByBirthYear", new { condition = "equal" })"
+        class="btn @(selectedCondition == "equal" ? "btn-primary" : "btn-light")">
+        Equal
+    </a>
+    <a href="@Url.Action("FilterByBirthYear", new { condition = "greater" })"
+        class="btn @(selectedCondition == "greater" ? "btn-primary" : "btn-light")">
+        Greater
+    </a>
+    <a href="@Url.Action("FilterByBirthYear", new { condition = "less" })"
+        class="btn @(selectedCondition == "less" ? "btn-primary" : "btn-light")">
+        Less
+    </a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.FullName</td>
+                <td>@person.Gender</td>
+                <td>@person.DateOfBirthString</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

@@ -1,0 +1,17 @@
+@model Person
+
+@{
+    ViewData["Title"] = "Oldest Person";
+}
+
+<h2>Oldest Person</h2>
+
+<p><strong>Last name:</strong> @Model.LastName</p>
+<p><strong>First name:</strong> @Model.FirstName</p>
+<p><strong>Gender:</strong> @Model.Gender</p>
+<p><strong>Date of Birth:</strong> @Model.DateOfBirthString</p>
+<p><strong>Phone:</strong> @Model.PhoneNumber</p>
+<p><strong>Birth Place:</strong> @Model.BirthPlace</p>
+<p><strong>Graduated:</strong> @(Model.IsGraduated ? "Yes" : "No")</p>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

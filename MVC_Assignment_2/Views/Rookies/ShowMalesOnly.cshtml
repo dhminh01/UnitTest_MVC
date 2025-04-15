@@ -1,0 +1,25 @@
+@model IEnumerable<Person>
+@{
+    ViewData["Title"] = "Male List";
+}
+<h2>Male List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fullname</th>
+            <th>Gender</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.ID</td>
+                <td><a asp-action="ShowDetails" asp-route-id="@person.ID">@person.FullName</a></td>
+                <td>@person.Gender</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

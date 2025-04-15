@@ -1,0 +1,93 @@
+@model IEnumerable<MVC_Assignment_2.Models.Person>
+@{
+    ViewData["Title"] = "People List";
+    int currentPage = ViewData["CurrentPage"] as int? ?? 1;
+    int totalPages = ViewData["TotalPages"] as int? ?? 1;
+}
+
+<h2>People List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Fullname</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model.Select((value, index) => new { value, index }))
+        {
+            <tr>
+                <td>@(person.index + 1)</td>
+                <td><a asp-action="ShowDetails" asp-route-id="@person.value.ID">@person.value.FullName</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="pagination-container">
+    @if (currentPage > 1)
+    {
+        <a asp-action="Index" asp-route-page="1" class="btn btn-pagination">First</a>
+        <a asp-action="Index" asp-route-page="@(currentPage - 1)" class="btn btn-pagination">Previous</a>
+    }
+
+    <span class="pagination-info">Page @currentPage of @totalPages</span>
+
+    @if (currentPage < totalPages)
+    {
+        <a asp-action="Index" asp-route-page="@(currentPage + 1)" class="btn btn-pagination">Next</a>
+        <a asp-action="Index" asp-route-page="@totalPages" class="btn btn-pagination">Last</a>
+    }
+</div>
+
+<a asp-action="Create" class="btn btn-primary">Create New Person</a>
+<a asp-action="ExportToExcel" class="btn btn-success">Export to Excel</a>
+
+<!-- Inline CSS -->
+<style>
+    /* Pagination container */
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    /* Pagination buttons */
+    .btn-pagination {
+        padding: 8px 16px;
+        background-color: #f8f9fa;
+        border: 1px solid #ccc;
+        color: #007bff;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Pagination button on hover */
+    .btn-pagination:hover {
+        background-color: #e2e6ea;
+    }
+
+    /* Pagination info */
+    .pagination-info {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Disable buttons when on first/last page */
+    .btn-pagination:disabled {
+        background-color: #f1f1f1;
+        color: #ccc;
+        cursor: not-allowed;
+    }
+
+    .btn-pagination:disabled:hover {
+        background-color: #f1f1f1;
+    }
+</style>
