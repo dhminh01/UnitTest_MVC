@@ -16,8 +16,9 @@ The purpose of this project is to showcase how to write unit tests for an MVC ap
 ## Technologies Used
 
 - **Framework**: ASP.NET Core MVC, NUnit.Framework
-- **Testing Framework**: NUnit
+- **Testing Framework**: NUnit - [Docs](https://docs.nunit.org/index.html)
 - **Mocking Library**: Moq
+- **VSCode Extension**: [Test Adapter Converter](https://marketplace.visualstudio.com/items?itemName=ms-vscode.test-adapter-converter) for test coverage.
 
 ## Setup Instructions
 
